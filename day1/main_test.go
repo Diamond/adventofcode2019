@@ -29,3 +29,20 @@ func TestGetFuelTotal(t *testing.T) {
 		t.Errorf("Total Fuel for masses did not equal %d, instead got %d", expected, total)
 	}
 }
+
+func TestGetPerItemFuelForFuel(t *testing.T) {
+	tables := []struct {
+		mass []int
+		fuel int
+	}{
+		{[]int{14}, 2},
+		{[]int{1969}, 966},
+		{[]int{100756}, 50346},
+	}
+	for _, table := range tables {
+		f := GetPerItemFuelForFuel(table.mass)
+		if f != table.fuel {
+			t.Errorf("Fuel %d did not match expected value %d", f, table.fuel)
+		}
+	}
+}
